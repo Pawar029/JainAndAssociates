@@ -1,0 +1,7 @@
+.nav-link:hover{
+  /* background-color: rgb(221, 221, 255); */
+  /* background-color: rgba(41, 107, 228, 0.865); */
+  background-color: rgba(142, 173, 233, 0.865);
+   text-decoration: underline;
+}
+ 
