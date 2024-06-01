@@ -21,6 +21,16 @@ const Profile = () => {
     // setlength(event.target.length)
   }
 
+  const [rates, setRates] = useState({});
+
+  const handleSteelRate = (dia, value) => {
+    setRates((prevRates) => ({
+      ...prevRates,
+      [dia]: parseFloat(value) || 0, // Ensure we store a float, default to 0 if value is empty or invalid
+    }));
+  };
+
+
   const fetchData = async () => {
     try {
       // const userNumber = window.localStorage.getItem('number');
@@ -140,18 +150,12 @@ const Profile = () => {
                   <td ><input className='form-control' id="rateAggregate" placeholder="Enter Rate of Aggregate per brass" value={rate.rateAggregate} onChange={(e) => change(e)} required/></td>
                   <td >{myData.Aggregate * 0.353 * rate.rateAggregate}</td>
                 </tr>
-
-              {/* ))} */}
-
-              {/* <tr>
-                <th><button className='btn btn-outline-primary fw-bolder p-2 border-2 ' onClick={Total} >Click here to Get Total</button></th>
-                <td> </td>
-                <td> </td>
-                <th key={total.slabCement}>{total.slabCement}</th>
-                <th key={total.slabSand}>{total.slabSand}</th>
-                <th key={total.slabAggregate}>{total.slabAggregate}</th>
-                <th></th>
-              </tr> */}
+                <tr  >
+                  <th >Total Amount</th>
+                  <td ></td>
+                  <td ></td>
+                  <th >{parseFloat(((myData.Cement * rate.rateCement)+(myData.Sand * 0.353 * rate.rateSand)+(myData.Aggregate * 0.353 * rate.rateAggregate)).toFixed(3),10)}</th>
+                </tr>
 
             </tbody>
 
@@ -167,19 +171,24 @@ const Profile = () => {
                 <th>Wastage of 10%</th>
                 <th>Overall Total</th>
                 <th>Order Place</th>
+                <th>Rate </th>
+                <th>Amount </th>
               </tr>
             </thead>
             <tbody >
-              {Object.entries(Steel).map(([dia, weight]) => (
-                < tr>
+              {Object.entries(Steel).map(([dia, weight]) =>{
+                const rateSteel = rates[dia] || 0;
+               return (
+                < tr key={dia}>
                   <td >{dia} MM</td>
                   <td >{parseFloat((weight).toFixed(3), 10)} KG</td>
                   <td >{parseFloat((0.1 * weight).toFixed(3), 10)} KG</td>
                   <td >{parseFloat(((0.1 * weight) + weight).toFixed(3), 10)} KG</td>
                   <td >{parseFloat((((0.1 * weight) + weight + 200) / 1000).toFixed(3), 10)} Tone</td>
-
+                  <td><input className='form-control' id={`rateSteel-${dia}`} placeholder="Enter Rate of Steel According to diameter of bar" value={rateSteel} onChange={(e) => handleSteelRate(dia,e.target.value)}/></td>
+                  <td>{(parseFloat(weight.toFixed(3)) * rateSteel).toFixed(2)}</td>
                 </tr>
-              ))}
+              )})}
 
 
 
