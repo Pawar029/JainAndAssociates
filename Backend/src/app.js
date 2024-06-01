@@ -18,7 +18,7 @@ const app = express();
 const cors = require('cors');
 // app.use(cors());
 const corsOption = {
-    origin: "https://jain-and-associates.vercel.app/",
+    origin: "https://jain-and-associates.vercel.app",
     method: "GET, POST, PUT, DELETE, PATCH, HEAD",
     credentials: true,
 };
