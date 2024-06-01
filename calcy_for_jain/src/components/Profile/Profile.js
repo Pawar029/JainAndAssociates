@@ -34,9 +34,9 @@ const Profile = () => {
   const fetchData = async () => {
     try {
       // const userNumber = window.localStorage.getItem('number');
-      const logindata = await Axios.get("http://localhost:8000/profile");
+      const logindata = await Axios.get("https://jain-and-associates-backend.vercel.app/profile");
       const userNumber = logindata.data.number;
-      const response = await Axios.get(`http://localhost:8000/oneregister?number=${userNumber}`);
+      const response = await Axios.get(`https://jain-and-associates-backend.vercel.app/oneregister?number=${userNumber}`);
       // console.log(response.data);
       // const { name, location, number, email } = response.data;
       // console.log("name ",response.data.user.name);
@@ -54,15 +54,15 @@ const Profile = () => {
     e.preventDefault();
     try {
       
-      await Axios.patch("http://localhost:8000/result/");
-      await Axios.patch("http://localhost:8000/resultbeam/");
-      await Axios.patch("http://localhost:8000/resultcolumn/");
-      await Axios.patch("http://localhost:8000/resultfooting/");
-      await Axios.patch("http://localhost:8000/resultstair/");
+      await Axios.patch("https://jain-and-associates-backend.vercel.app/result/");
+      await Axios.patch("https://jain-and-associates-backend.vercel.app/resultbeam/");
+      await Axios.patch("https://jain-and-associates-backend.vercel.app/resultcolumn/");
+      await Axios.patch("https://jain-and-associates-backend.vercel.app/resultfooting/");
+      await Axios.patch("https://jain-and-associates-backend.vercel.app/resultstair/");
 
-      await Axios.patch("http://localhost:8000/finalresult/");
+      await Axios.patch("https://jain-and-associates-backend.vercel.app/finalresult/");
 
-      const response = await Axios.get("http://localhost:8000/finalresult/");
+      const response = await Axios.get("https://jain-and-associates-backend.vercel.app/finalresult/");
       setMyData(response.data);
       const { Steel } = response.data;
       if(Steel){

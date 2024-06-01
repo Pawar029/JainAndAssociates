@@ -46,7 +46,7 @@ export default function MaterialInFooting() {
   const [loginData, setloginData] = useState("");
   useEffect(() => {
 
-    Axios.get("http://localhost:8000/profile")
+    Axios.get("https://jain-and-associates-backend.vercel.app/profile")
       .then((logindata) => {
         if (logindata.data.length !== 0) {
           setlogin(true);
@@ -58,7 +58,7 @@ export default function MaterialInFooting() {
         }
       })
 
-    Axios.get("http://localhost:8000/footing/")
+    Axios.get("https://jain-and-associates-backend.vercel.app/footing/")
       .then((res) =>{
         if (login) {
           setMyData(res.data);
@@ -126,8 +126,8 @@ export default function MaterialInFooting() {
     console.log("addtask invoked")
 
     try {
-      const logindata = await Axios.get("http://localhost:8000/profile");
-      await Axios.post("http://localhost:8000/footing/", {
+      const logindata = await Axios.get("https://jain-and-associates-backend.vercel.app/profile");
+      await Axios.post("https://jain-and-associates-backend.vercel.app/footing/", {
         clientName:logindata.data.name,
         clientNumber:logindata.data.number,
         name,
@@ -141,7 +141,7 @@ export default function MaterialInFooting() {
         shortBarWeight,
 
       });
-      const res = await Axios.get("http://localhost:8000/column/");
+      const res = await Axios.get("https://jain-and-associates-backend.vercel.app/column/");
       setMyData(res.data);
       console.log("res", res.data);
     }
@@ -163,9 +163,9 @@ export default function MaterialInFooting() {
 
     try {
 
-      await Axios.patch("http://localhost:8000/resultfooting/");
+      await Axios.patch("https://jain-and-associates-backend.vercel.app/resultfooting/");
 
-      const response = await Axios.get("http://localhost:8000/resultfooting/");
+      const response = await Axios.get("https://jain-and-associates-backend.vercel.app/resultfooting/");
       setTotal(response.data);
       const { footingSteel } = response.data;
       if(footingSteel){
@@ -183,7 +183,7 @@ export default function MaterialInFooting() {
   const handleDelete = async (e, id) => {
     // Perform delete operation using the id
     console.log(`Deleting data with id ${id}`);
-    await Axios.delete(`http://localhost:8000/footing/${id}`)
+    await Axios.delete(`https://jain-and-associates-backend.vercel.app/footing/${id}`)
       .then(response => {
         if (response.status === 200) {
           alert(`Data with id ${id} deleted successfully`);
@@ -198,7 +198,7 @@ export default function MaterialInFooting() {
         console.error('Error:', error);
       });
 
-    await Axios.get("http://localhost:8000/footing/");
+    await Axios.get("https://jain-and-associates-backend.vercel.app/footing/");
     // Call the Total function
     await Total(e);
   };

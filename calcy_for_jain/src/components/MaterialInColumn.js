@@ -48,7 +48,7 @@ export default function MaterialInColumn() {
   const [loginData, setloginData] = useState("");
   useEffect(() => {
 
-    Axios.get("http://localhost:8000/profile")
+    Axios.get("https://jain-and-associates-backend.vercel.app/profile")
       .then((logindata) => {
         if (logindata.data.length !== 0) {
           setlogin(true);
@@ -60,7 +60,7 @@ export default function MaterialInColumn() {
         }
       })
 
-    Axios.get("http://localhost:8000/column/")
+    Axios.get("https://jain-and-associates-backend.vercel.app/column/")
       .then((res) =>{
         if (login) {
           setMyData(res.data);
@@ -166,8 +166,8 @@ export default function MaterialInColumn() {
     console.log("addtask invoked")
 
     try {
-      const logindata = await Axios.get("http://localhost:8000/profile");
-      await Axios.post("http://localhost:8000/column/", {
+      const logindata = await Axios.get("https://jain-and-associates-backend.vercel.app/profile");
+      await Axios.post("https://jain-and-associates-backend.vercel.app/column/", {
         clientName:logindata.data.name,
         clientNumber:logindata.data.number,
         name,
@@ -182,7 +182,7 @@ export default function MaterialInColumn() {
         stirrupsWeight,
 
       });
-      const res = await Axios.get("http://localhost:8000/column/");
+      const res = await Axios.get("https://jain-and-associates-backend.vercel.app/column/");
       setMyData(res.data);
       console.log("res", res.data);
     }
@@ -202,9 +202,9 @@ export default function MaterialInColumn() {
     e.preventDefault();
     try {
 
-      await Axios.patch("http://localhost:8000/resultcolumn/");
+      await Axios.patch("https://jain-and-associates-backend.vercel.app/resultcolumn/");
 
-      const response = await Axios.get("http://localhost:8000/resultcolumn/");
+      const response = await Axios.get("https://jain-and-associates-backend.vercel.app/resultcolumn/");
       setTotal(response.data);
       const { columnSteel } = response.data;
       if(columnSteel){
@@ -222,7 +222,7 @@ export default function MaterialInColumn() {
   const handleDelete = async (e, id) => {
     // Perform delete operation using the id
     console.log(`Deleting data with id ${id}`);
-    await Axios.delete(`http://localhost:8000/column/${id}`)
+    await Axios.delete(`https://jain-and-associates-backend.vercel.app/column/${id}`)
       .then(response => {
         if (response.status === 200) {
           alert(`Data with id ${id} deleted successfully`);
@@ -237,7 +237,7 @@ export default function MaterialInColumn() {
         console.error('Error:', error);
       });
 
-    await Axios.get("http://localhost:8000/column/");
+    await Axios.get("https://jain-and-associates-backend.vercel.app/column/");
     // Call the Total function
     await Total(e);
   };

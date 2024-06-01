@@ -59,7 +59,7 @@ export default function MaterialInSlab() {
   const [loginData, setloginData] = useState("");
   useEffect(() => {
 
-    Axios.get("http://localhost:8000/profile")
+    Axios.get("https://jain-and-associates-backend.vercel.app/profile")
       .then((logindata) => {
         if(logindata.data.length!==0){
           setlogin(true);
@@ -71,7 +71,7 @@ export default function MaterialInSlab() {
         }
       })
 
-    Axios.get("http://localhost:8000/slab/")
+    Axios.get("https://jain-and-associates-backend.vercel.app/slab/")
       .then((res) =>{
         if(login){
           setMyData(res.data);
@@ -200,10 +200,10 @@ export default function MaterialInSlab() {
 
     try {
       // console.log("hello");
-      const logindata = await Axios.get("http://localhost:8000/profile");
+      const logindata = await Axios.get("https://jain-and-associates-backend.vercel.app/profile");
       // console.log("Here is login data ",logindata);
       console.log("Here is login data ",logindata.data.name);
-      await Axios.post("http://localhost:8000/slab/", {
+      await Axios.post("https://jain-and-associates-backend.vercel.app/slab/", {
         clientName:logindata.data.name,
         clientNumber:logindata.data.number,
         name,
@@ -220,7 +220,7 @@ export default function MaterialInSlab() {
         Weight_tb,
 
       });
-      const res = await Axios.get("http://localhost:8000/slab/");
+      const res = await Axios.get("https://jain-and-associates-backend.vercel.app/slab/");
       setMyData(res.data);
       console.log("res", res.data);
     }
@@ -239,9 +239,9 @@ export default function MaterialInSlab() {
     e.preventDefault();
     try {
 
-      await Axios.patch("http://localhost:8000/result/");
+      await Axios.patch("https://jain-and-associates-backend.vercel.app/result/");
 
-      const response = await Axios.get("http://localhost:8000/result/");
+      const response = await Axios.get("https://jain-and-associates-backend.vercel.app/result/");
       setTotal(response.data);
       const { slabSteel } = response.data;
       if(slabSteel){
@@ -259,7 +259,7 @@ export default function MaterialInSlab() {
   const handleDelete = async (id) => {
     // Perform delete operation using the id
     console.log(`Deleting data with id ${id}`);
-    await Axios.delete(`http://localhost:8000/slab/${id}`)
+    await Axios.delete(`https://jain-and-associates-backend.vercel.app/slab/${id}`)
       .then(response => {
         if (response.status === 200) {
           alert(`Data with id ${id} deleted successfully`);
@@ -274,7 +274,7 @@ export default function MaterialInSlab() {
         console.error('Error:', error);
       });
 
-    await Axios.get("http://localhost:8000/slab/");
+    await Axios.get("https://jain-and-associates-backend.vercel.app/slab/");
   };
   const Print = () => {
     // console.log('print');

@@ -29,7 +29,7 @@ export default function MaterialInWall() {
   const [loginData, setloginData] = useState("");
   useEffect(() => {
 
-    Axios.get("http://localhost:8000/profile")
+    Axios.get("https://jain-and-associates-backend.vercel.app/profile")
       .then((logindata) => {
         if (logindata.data.length !== 0) {
           setlogin(true);
@@ -41,7 +41,7 @@ export default function MaterialInWall() {
         }
       })
 
-    Axios.get("http://localhost:8000/wall/")
+    Axios.get("https://jain-and-associates-backend.vercel.app/wall/")
       .then((res) => {
         if (login) {
           setMyData(res.data);
@@ -55,7 +55,7 @@ export default function MaterialInWall() {
 
     
 
-    // const logindata = Axios.get("http://localhost:8000/profile");
+    // const logindata = Axios.get("https://jain-and-associates-backend.vercel.app/profile");
     // setloginName(logindata.data.name);
     // setloginNumber(logindata.data.number);
     // console.log("here is login data ",loginName);
@@ -111,10 +111,10 @@ export default function MaterialInWall() {
     console.log("addtask invoked")
 
     try {
-      const logindata = await Axios.get("http://localhost:8000/profile");
+      const logindata = await Axios.get("https://jain-and-associates-backend.vercel.app/profile");
       // setloginName(logindata.data.name);
       // setloginNumber(logindata.data.number);
-      await Axios.post("http://localhost:8000/wall/", {
+      await Axios.post("https://jain-and-associates-backend.vercel.app/wall/", {
         clientName: logindata.data.name,
         clientNumber: logindata.data.number,
         name,
@@ -123,7 +123,7 @@ export default function MaterialInWall() {
         No_of_cement_bags,
         Vol_of_sand,
       });
-      const res = await Axios.get("http://localhost:8000/wall/");
+      const res = await Axios.get("https://jain-and-associates-backend.vercel.app/wall/");
       setMyData(res.data);
       console.log("res", res.data);
     }
@@ -143,9 +143,9 @@ export default function MaterialInWall() {
 
     try {
 
-      await Axios.patch("http://localhost:8000/resultwall/");
+      await Axios.patch("https://jain-and-associates-backend.vercel.app/resultwall/");
 
-      const response = await Axios.get("http://localhost:8000/resultwall/");
+      const response = await Axios.get("https://jain-and-associates-backend.vercel.app/resultwall/");
       setTotal(response.data);
       // const { columnSteel } = response.data;
       // setColumnSteel(columnSteel);
@@ -161,7 +161,7 @@ export default function MaterialInWall() {
   const handleDelete = async (e, id) => {
     // Perform delete operation using the id
     console.log(`Deleting data with id ${id}`);
-    await Axios.delete(`http://localhost:8000/wall/${id}`)
+    await Axios.delete(`https://jain-and-associates-backend.vercel.app/wall/${id}`)
       .then(response => {
         if (response.status === 200) {
           alert(`Data with id ${id} deleted successfully`);
@@ -176,7 +176,7 @@ export default function MaterialInWall() {
         console.error('Error:', error);
       });
 
-    await Axios.get("http://localhost:8000/wall/");
+    await Axios.get("https://jain-and-associates-backend.vercel.app/wall/");
     // Call the Total function
     await Total(e);
   };

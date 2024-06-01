@@ -6,7 +6,7 @@ import Axios from 'axios';
 export default function ClientList() {
     const [myData,setMyData] = useState([]);
     useEffect(() => {
-        Axios.get("http://localhost:8000/register")
+        Axios.get("https://jain-and-associates-backend.vercel.app/register")
             .then((res) => {
               // console.log(res.data)
                 setMyData(res.data);
@@ -16,7 +16,7 @@ export default function ClientList() {
     const handleDelete = async (e, id) => {
       // Perform delete operation using the id
       console.log(`Deleting data with id ${id}`);
-      await Axios.delete(`http://localhost:8000/register/${id}`)
+      await Axios.delete(`https://jain-and-associates-backend.vercel.app/register/${id}`)
         .then(response => {
           if (response.status === 200) {
             alert(`Data with id ${id} deleted successfully`);

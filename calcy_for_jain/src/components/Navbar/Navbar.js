@@ -20,7 +20,7 @@ export default function Navbar() {
   // const checkLoginStatus = async () => {
   //   try {
   //     const number = window.localStorage.getItem('number');
-  //     const response = await Axios.get(`http://localhost:8000/profile?number=${number}`);
+  //     const response = await Axios.get(`https://jain-and-associates-backend.vercel.app/profile?number=${number}`);
   //     console.log(response);
   //     if (response.data.loggedIn) {
   //       setLoggedIn(true);
@@ -36,7 +36,7 @@ export default function Navbar() {
   // };
 
   useEffect(() => {
-    Axios.get("http://localhost:8000/profile/")
+    Axios.get("https://jain-and-associates-backend.vercel.app/profile/")
       .then((res) =>{
         if(res.data.length!==0){
           setLoggedIn(true);
@@ -62,7 +62,7 @@ export default function Navbar() {
   const handleLogout = async (e, id) => {
     e.preventDefault();
     console.log(`Deleting data with id ${id}`);
-    await Axios.delete(`http://localhost:8000/logout/${id}`)
+    await Axios.delete(`https://jain-and-associates-backend.vercel.app/logout/${id}`)
       .then(response => {
         if (response.status === 200) {
           alert(`User Logout Successfully `);

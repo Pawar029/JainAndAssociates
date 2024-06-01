@@ -57,7 +57,7 @@ export default function MaterialInBeam() {
   const [loginData, setloginData] = useState("");
   useEffect(() => {
 
-    Axios.get("http://localhost:8000/profile")
+    Axios.get("https://jain-and-associates-backend.vercel.app/profile")
       .then((logindata) => {
         if (logindata.data.length !== 0) {
           setlogin(true);
@@ -69,7 +69,7 @@ export default function MaterialInBeam() {
         }
       })
 
-    Axios.get("http://localhost:8000/beam/")
+    Axios.get("https://jain-and-associates-backend.vercel.app/beam/")
       .then((res) => {
         if(login){
           setMyData(res.data)
@@ -141,8 +141,8 @@ export default function MaterialInBeam() {
 
     try {
       // console.log("hello");
-      const logindata = await Axios.get("http://localhost:8000/profile");
-      await Axios.post("http://localhost:8000/beam/", {
+      const logindata = await Axios.get("https://jain-and-associates-backend.vercel.app/profile");
+      await Axios.post("https://jain-and-associates-backend.vercel.app/beam/", {
         clientName:logindata.data.name,
         clientNumber:logindata.data.number,
         name,
@@ -161,7 +161,7 @@ export default function MaterialInBeam() {
         bott_ex_dia,
         Weight_bott_ex,
       });
-      const res = await Axios.get("http://localhost:8000/beam/");
+      const res = await Axios.get("https://jain-and-associates-backend.vercel.app/beam/");
       setMyData(res.data);
       console.log("res", res.data);
     }
@@ -184,9 +184,9 @@ export default function MaterialInBeam() {
 
     try {
 
-      await Axios.patch("http://localhost:8000/resultbeam/");
+      await Axios.patch("https://jain-and-associates-backend.vercel.app/resultbeam/");
 
-      const response = await Axios.get("http://localhost:8000/resultbeam/");
+      const response = await Axios.get("https://jain-and-associates-backend.vercel.app/resultbeam/");
       setTotal(response.data);
       const { beamSteel } = response.data;
       if(beamSteel){
@@ -205,7 +205,7 @@ export default function MaterialInBeam() {
     e.preventDefault();
     // Perform delete operation using the id
     console.log(`Deleting data with id ${id}`);
-    await Axios.delete(`http://localhost:8000/beam/${id}`)
+    await Axios.delete(`https://jain-and-associates-backend.vercel.app/beam/${id}`)
       .then(response => {
         if (response.status === 200) {
           alert(`Data with id ${id} deleted successfully`);
@@ -222,7 +222,7 @@ export default function MaterialInBeam() {
 
     // Call the Total function
     await Total(e);
-    await Axios.get("http://localhost:8000/beam/");
+    await Axios.get("https://jain-and-associates-backend.vercel.app/beam/");
   };
 
   const Print = async (e) => {

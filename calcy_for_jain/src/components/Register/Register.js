@@ -14,7 +14,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await Axios.post("http://localhost:8000/register", {
+            const res = await Axios.post("https://jain-and-associates-backend.vercel.app/register", {
                 name,
                 location,
                 number,

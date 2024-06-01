@@ -14,7 +14,7 @@ const Login = () => {
         e.preventDefault();
         try {
             window.localStorage.setItem('number', number);
-            const res = await Axios.post("http://localhost:8000/login", {
+            const res = await Axios.post("https://jain-and-associates-backend.vercel.app/login", {
                 name,
                 number,
             });

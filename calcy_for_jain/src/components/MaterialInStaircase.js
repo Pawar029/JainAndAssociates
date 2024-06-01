@@ -48,7 +48,7 @@ export default function MaterialInStaircase() {
   const [loginData, setloginData] = useState("");
   useEffect(() => {
 
-    Axios.get("http://localhost:8000/profile")
+    Axios.get("https://jain-and-associates-backend.vercel.app/profile")
       .then((logindata) => {
         if (logindata.data.length !== 0) {
           setlogin(true);
@@ -60,7 +60,7 @@ export default function MaterialInStaircase() {
         }
       })
 
-    Axios.get("http://localhost:8000/stair/")
+    Axios.get("https://jain-and-associates-backend.vercel.app/stair/")
       .then((res) =>{
         if (login) {
           setMyData(res.data);
@@ -130,8 +130,8 @@ export default function MaterialInStaircase() {
     console.log("addtask invoked")
 
     try {
-      const logindata = await Axios.get("http://localhost:8000/profile");
-      await Axios.post("http://localhost:8000/stair/", {
+      const logindata = await Axios.get("https://jain-and-associates-backend.vercel.app/profile");
+      await Axios.post("https://jain-and-associates-backend.vercel.app/stair/", {
         clientName:logindata.data.name,
         clientNumber:logindata.data.number,
         name,
@@ -145,7 +145,7 @@ export default function MaterialInStaircase() {
         shortBarWeight,
 
       });
-      const res = await Axios.get("http://localhost:8000/stair/");
+      const res = await Axios.get("https://jain-and-associates-backend.vercel.app/stair/");
       setMyData(res.data);
       console.log("res", res.data);
     }
@@ -167,9 +167,9 @@ export default function MaterialInStaircase() {
 
     try {
 
-      await Axios.patch("http://localhost:8000/resultstair/");
+      await Axios.patch("https://jain-and-associates-backend.vercel.app/resultstair/");
 
-      const response = await Axios.get("http://localhost:8000/resultstair/");
+      const response = await Axios.get("https://jain-and-associates-backend.vercel.app/resultstair/");
       setTotal(response.data);
       const { stairSteel } = response.data;
       if(stairSteel){
@@ -188,7 +188,7 @@ export default function MaterialInStaircase() {
   const handleDelete = async (e, id) => {
     // Perform delete operation using the id
     console.log(`Deleting data with id ${id}`);
-    await Axios.delete(`http://localhost:8000/stair/${id}`)
+    await Axios.delete(`https://jain-and-associates-backend.vercel.app/stair/${id}`)
       .then(response => {
         if (response.status === 200) {
           alert(`Data with id ${id} deleted successfully`);
@@ -203,7 +203,7 @@ export default function MaterialInStaircase() {
         console.error('Error:', error);
       });
 
-    await Axios.get("http://localhost:8000/stair/");
+    await Axios.get("https://jain-and-associates-backend.vercel.app/stair/");
     // Call the Total function
     await Total(e);
   };
